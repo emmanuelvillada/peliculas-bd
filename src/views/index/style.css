@@ -1,0 +1,141 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fad0c4, #fcb69f);
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #4caf50;
+    font-size: 2rem;
+}
+
+main {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+#movies {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.movie {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-movie form {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+textarea,
+button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    #movies {
+        grid-template-columns: 1fr;
+        /* Cambia a una sola columna en pantallas pequeñas */
+    }
+
+    main {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+        /* Ajusta el tamaño del título */
+    }
+
+    input,
+    textarea,
+    button {
+        font-size: 0.9rem;
+        /* Reduce el tamaño del texto en campos de entrada */
+        padding: 8px;
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
