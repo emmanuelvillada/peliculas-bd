@@ -1,0 +1,12 @@
+{
+    "name": "usuario/peliculas-bd",
+    "description": "listado de peliculas",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\PeliculasBd\\": "src/"
+        }
+    },
+    "require": {
+        "phpoffice/phpspreadsheet": "^3.3"
+    }
+}

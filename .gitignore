@@ -1,2 +1,7 @@
 #env
 .env
+
+
+#visual studio 
+.vs
+/vendor/

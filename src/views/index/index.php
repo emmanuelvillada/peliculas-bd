@@ -11,10 +11,17 @@
 </head>
 <body>
   <header>
-    <h1>Gestión de Películas</h1>
+    <h1>Listados de Películas</h1>
   </header>
 
   <main>
+    <div class="excel-movie">
+    <a href="../index//helpers/exportar-peliculas.php" class="download-btn">Descargar Excel con tus peliculas agregadas</a>
+    </div>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Simpson" />
+      <button class="search-btn" id="search-btn"><img src="../../assets/icons/search.svg" alt="icono buscar" srcset=""></button>
+    </div>
   <section class="movie-list">
   <h2>Lista de Películas</h2>
   <div id="movies">
@@ -26,5 +33,7 @@
   </main>
 
   <script src="../index/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
+
