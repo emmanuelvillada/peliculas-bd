@@ -12,8 +12,12 @@ Este proyecto es una aplicación de lista de películas que permite a los usuari
 ## Instalación
 1. Clona este repositorio o descomprime el archivo ZIP.
 2. Coloca el proyecto en la carpeta de tu servidor local (por ejemplo, `htdocs` en XAMPP) e ingresa a la ruta: http://localhost/peliculas/peliculas-bd/src/views/index/index.php.
+
 3. Importa el archivo `db/peliculas_php.sql` en tu base de datos MySQL.
 4. Renombra `database/conexion.php` y ajusta las credenciales de la base de datos.
+5. En la raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias de PHP:
+   ```bash
+   composer install
 
 ## Uso
 - **Búsqueda**: Introduce el nombre de una película y haz clic en "Buscar".
