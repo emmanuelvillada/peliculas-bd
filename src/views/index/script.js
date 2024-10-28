@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       movieDiv.innerHTML = `
         <h3 class="movie-title">${movie.Title}</h3>
         <p class="movie-year">Año: ${movie.Year}</p>
+        <p class="movie-imdbID">IMDb ID: ${movie.imdbID}</p>
         <img class="movie-poster" src="${movie.Poster !== "N/A" ? movie.Poster : "default-image.jpg"}" alt="${movie.Title}" width="100">
         <button class="add-movie-btn" data-id="${movie.imdbID}" data-title="${movie.Title}" data-year="${movie.Year}">
           <img src="../../assets/icons/add.svg" alt="icono agregar">
@@ -62,25 +63,25 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(movieData)
     })
-    .then(response => response.json())
-    .then(result => {
-      Swal.fire({
-        icon: result.success ? 'success' : 'error',
-        title: result.success ? 'Película agregada' : 'Error',
-        text: result.success ? 'La película se agregó correctamente' : 'No se pudo agregar la película',
-        showConfirmButton: false,
-        timer: 1500
+      .then(response => response.json())
+      .then(result => {
+        Swal.fire({
+          icon: result.success ? 'success' : 'error',
+          title: result.success ? 'Película agregada' : 'Error',
+          text: result.success ? 'La película se agregó correctamente' : 'No se pudo agregar la película',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(error => {
+        console.error("Error adding movie to database:", error);
       });
-    })
-    .catch(error => {
-      console.error("Error adding movie to database:", error);
-    });
   }
 
   // Evento de búsqueda para el botón
   searchBtn.addEventListener("click", function () {
     const searchTerm = searchInput.value.trim();
-    if (searchTerm !== "") {  
+    if (searchTerm !== "") {
       fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             movieList.innerHTML = "<p class='no-results'>No se encontraron películas.</p>";
           }
         })
-        .catch(error => { 
+        .catch(error => {
           console.error("Error al obtener las películas:", error);
           movieList.innerHTML = "<p class='error'>Error al cargar películas.</p>";
         });
@@ -115,4 +116,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cargar películas predeterminadas al inicio
   fetchMovies();
+
+  //formulario
+  // Referencia al formulario
+  const addMovieForm = document.getElementById("add-movie-form");
+
+  // Evento de envío del formulario
+  addMovieForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const movieData = {
+      imdbID: document.getElementById("movie-imdbID").value,
+      title: document.getElementById("movie-title").value,
+      year: document.getElementById("movie-year").value,
+    };
+
+    fetch("../index/helpers/add-pelicula.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(movieData)
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Película agregada',
+            text: 'La película se agregó correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          addMovieForm.reset(); // Limpiar el formulario
+          fetchMovies(); // Actualizar la lista de películas
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo agregar la película',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Error al agregar la película:", error);
+      });
+  });
 });

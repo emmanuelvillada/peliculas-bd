@@ -178,8 +178,14 @@ section {
     color: #333;
     margin-bottom: 5px;
 }
+.movie-list {
+    max-height: 600px; /* Ajusta el valor según el diseño y la cantidad de películas visibles */
+    overflow-y: auto; /* Permite desplazamiento cuando hay más películas */
+    padding-right: 10px; /* Espacio para evitar que el contenido quede bajo el scrollbar */
+}
 
-.movie-year {
+.movie-year,
+.movie-imdbID {
     font-size: 1rem;
     color: #777;
     margin-bottom: 10px;
@@ -208,6 +214,7 @@ section {
     background-color: #45a049;
 }
 
+
 /* Efectos de transición */
 input,
 textarea,
@@ -232,6 +239,69 @@ button {
     transition: transform 0.3s ease;
 }
 
+/* Estilos para el formulario */
+.add-movie-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .add-movie-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .add-movie-section{
+    align-self: center
+  }
+  
+  #add-movie-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #add-movie-form label {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  #add-movie-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  #add-movie-form input:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+  
+  .submit-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+
+  
+
 /* Estilos Responsivos */
 @media (max-width: 768px) {
     header h1 {
@@ -239,7 +309,7 @@ button {
     }
 
     .search-container {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     main {
